@@ -60,19 +60,20 @@ const updateUser = (req, res) => {
             [firstname, lastname, email, city, language, hashedPassword, id]
         )
         .then(([result]) => {
-            if (result.affectedRows === 1) {
+            if (result.affectedRows === 0) {
                 res.status(404).send("Not Found");
             } else {
-                res.sendStatus(204);
+                console.log("result " + result.changedRows);
+                res.status(204).send("result");
             }
         })
         .catch((err) => {
-            res.status(500).send("Error editing the user", err);
+            res.status(500).send("Error editing the user" + err);
         });
 };
 
 module.exports = {
-    getUsers,
+    // getUsers,
     getUserById,
     postUser,
     updateUser
