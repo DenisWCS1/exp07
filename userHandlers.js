@@ -1,9 +1,10 @@
 const database = require("./database");
-
+/*
 let sql = "select * from users";
+*/
 const sqlValues = [];
 
-
+/*
 const getUsers = (req, res) => {
     database
         .query("select * from users")
@@ -16,7 +17,7 @@ const getUsers = (req, res) => {
         });
 };
 
-
+*/
 const getUserById = (req, res) => {
     const id = Number(req.params.id);
     database
