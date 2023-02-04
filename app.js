@@ -16,7 +16,7 @@ const homeMessage = (req, res) => {
 
 app.get("/", homeMessage);
 //app.get("/api/allusers", userHandlers.getUsers);
-app.get("/api/user/:id", userHandlers.getUserById);
+//app.get("/api/user/:id", userHandlers.getUserById);
 app.put("/api/user/:id", hashPassword, userHandlers.updateUser);
 app.post("/api/user", hashPassword, userHandlers.postUser);
 

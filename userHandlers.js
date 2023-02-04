@@ -1,23 +1,7 @@
 const database = require("./database");
-/*
-let sql = "select * from users";
-*/
+
 const sqlValues = [];
-
 /*
-const getUsers = (req, res) => {
-    database
-        .query("select * from users")
-        .then(([users]) => {
-            res.json(users);
-        })
-        .catch((err) => {
-            console.log(err),
-                res.status(500).send("Erreur impossible d'executer la requete")
-        });
-};
-
-*/
 const getUserById = (req, res) => {
     const id = Number(req.params.id);
     database
@@ -33,7 +17,7 @@ const getUserById = (req, res) => {
             res.status(500).send("Error retrieving data from database", err);
         });
 };
-
+*/
 
 const postUser = (req, res) => {
     const { firstname, lastname, email, city, language, hashedPassword } = req.body;
