@@ -22,11 +22,14 @@ app.get("/api/movies", movieHandlers.getMovies);
 app.get("/api/movie/:id", movieHandlers.getMovieById);
 
 // Route login
+//Appel de GetUserEmailPassword avec  le middleware verifyPassword
 app.post("/api/login", userHandlers.GetUserEmailPassword, verifyPassword);
 
 // Route protected
 app.use(verifyToken);
+//Appel de post user avec le middleware hashpassword
 app.post("/api/user", hashPassword, userHandlers.postUser);
+//Appel de put user avec le middleware hashpassword
 app.put("/api/user/:id", hashPassword, userHandlers.updateUser);
 app.delete("/api/users/:id", userHandlers.deleteUser);
 

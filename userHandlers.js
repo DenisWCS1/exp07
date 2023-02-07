@@ -73,13 +73,52 @@ const updateUser = (req, res) => {
 };
 
 // GetUserEmailPassword
+//Je créer ma fonction pour vérifier l'email de l'utilisateur
 const GetUserEmailPassword = (req, res, next) => {
+  /*
+ Ici par exemple dans postman le body envoyer correspond à 
+     {
+        "email": "denis@denis.com",
+        "password": "azerty1234"
+    }
+    donc Email =     {
+        "email": "denis@denis.com",
+        "password": "azerty1234"
+    }
+  */
   const { email } = req.body;
+  /*
+je me connecte à la base de données
+  */
   database
+    /*
+ Je selectionne le champ correspondant à l'email dans la base de données
+  */
     .query(`select * from users where email = ?`, [email])
+    /*
+  J'affecte le résultat au tableau user donc user =
+  {
+    "id": 11,
+    "firstname": "Denis",
+    "lastname": "Doe",
+    "email": "denis@denis.com",
+    "city": "Nantes",
+    "language": "English",
+    "hashedPassword": "$argon2id$v=19$m=65536,t=3,p=1$ZQzcKsErRLxOf/snU4658w$0BH++qfIsXVoXGKZbAAEfela16XefVh4iASLL+P2e1E"
+}
+  */
     .then(([users]) => {
+      /*
+Je vérifie que le premier champs n'est pas vide en gros que l'email à été trouvé dans la bdd
+  */
       if (users[0] != null) {
+        /*
+j'affecte la valeur du premier champ du tableau à req.user pour ensuite l'utiliser dans vérify password
+  */
         req.user = users[0];
+        /*
+ Je passe sur le middleware verifypassword
+  */
         next();
       } else {
         res.status(404);
