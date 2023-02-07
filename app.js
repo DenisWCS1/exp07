@@ -9,9 +9,8 @@ require("dotenv").config;
 app.use(express.json());
 
 const homeMessage = (req, res) => {
-    res.send("c'est la homepage")
+  res.send("c'est la homepage");
 };
-
 
 //accueil
 app.get("/", homeMessage);
@@ -23,11 +22,10 @@ app.get("/api/movies", movieHandlers.getMovies);
 app.get("/api/movie/:id", movieHandlers.getMovieById);
 
 // Route login
-app.post("/api/login",userHandlers.GetUserEmailPassword, verifyPassword);
+app.post("/api/login", userHandlers.GetUserEmailPassword, verifyPassword);
 
- // Route protected
+// Route protected
 app.use(verifyToken);
-
 app.post("/api/user", hashPassword, userHandlers.postUser);
 app.put("/api/user/:id", hashPassword, userHandlers.updateUser);
 app.delete("/api/users/:id", userHandlers.deleteUser);
@@ -36,13 +34,10 @@ app.post("/api/movies", movieHandlers.postMovie);
 app.put("/api/movies/:id", movieHandlers.updateMovie);
 app.delete("/api/movies/:id", movieHandlers.deleteMovie);
 
-
-
-
 app.listen(port, (err) => {
-    if (err) {
-        console.log("Somehting bad happened");
-    } else {
-        console.log("Server is listening on port ", port)
-    }
+  if (err) {
+    console.log("Somehting bad happened");
+  } else {
+    console.log("Server is listening on port ", port);
+  }
 });
